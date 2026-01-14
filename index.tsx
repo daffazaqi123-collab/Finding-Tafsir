@@ -378,7 +378,7 @@ const WelcomeScreen = ({ onStart }: { onStart: () => void }) => {
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-emerald-700/20 rounded-full blur-[120px] pointer-events-none animate-breathing"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none animate-breathing" style={{ animationDelay: '2s' }}></div>
 
-      <div className="z-10 text-center space-y-12 p-6 max-w-lg w-full animate-fade-in-up">
+      <div className="z-10 text-center space-y-8 md:space-y-12 p-6 max-w-lg w-full animate-fade-in-up">
         <div className="relative inline-block group cursor-default">
              <div className="absolute inset-0 bg-emerald-500 blur-[60px] opacity-20 rounded-full group-hover:opacity-30 transition-opacity duration-700"></div>
              <div className="relative z-10 w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-emerald-800 to-emerald-950 flex items-center justify-center border border-emerald-500/20 shadow-2xl shadow-emerald-900/50 transform group-hover:scale-105 transition-all duration-500 rotate-3 group-hover:rotate-0">
@@ -387,12 +387,19 @@ const WelcomeScreen = ({ onStart }: { onStart: () => void }) => {
         </div>
 
         <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-serif text-white tracking-tight drop-shadow-lg">Tafsir Finder</h1>
-            <p className="text-emerald-100/80 font-sans font-light leading-relaxed text-base md:text-lg px-4">
-              Tafsir Maudhu'i berdasarkan Intisari Tafsir Ibnu Katsir.
-            </p>
-            <p className="text-emerald-500/50 text-xs mt-2 block tracking-wider uppercase font-medium">(Offline Database v3.0)</p>
+            <h1 className="text-4xl md:text-7xl font-serif text-white tracking-tight drop-shadow-lg">Tafsir Finder</h1>
+            <div className="flex items-center justify-center gap-3">
+                <div className="h-[1px] w-8 bg-emerald-500/50"></div>
+                <p className="text-emerald-400/80 font-serif tracking-widest uppercase text-xs font-semibold">Tafsir Maudhu'i Lengkap</p>
+                <div className="h-[1px] w-8 bg-emerald-500/50"></div>
+            </div>
         </div>
+        
+        <p className="text-emerald-100/70 font-sans font-light leading-relaxed text-sm md:text-base px-4">
+          Koleksi lengkap 100+ Tema Tafsir berdasarkan Intisari Ibnu Katsir.
+          <br/>
+          <span className="text-emerald-500/50 text-xs mt-2 block">(Offline Database v3.0)</span>
+        </p>
 
         <button 
           onClick={onStart}
@@ -409,12 +416,12 @@ const WelcomeScreen = ({ onStart }: { onStart: () => void }) => {
 
 const CategorySelection = ({ onSelectCategory, onBack }: { onSelectCategory: (cat: ThemeCategory) => void, onBack: () => void }) => {
   return (
-    <div className="min-h-screen bg-background pb-20">
-      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 shadow-lg shadow-black/5 flex items-center gap-4">
-         <button onClick={onBack} className="p-2 -ml-2 rounded-full hover:bg-emerald-900/20 text-emerald-400/60 hover:text-emerald-400 transition-colors">
+    <div className="min-h-screen bg-background pb-20 pt-safe-top">
+      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 shadow-lg shadow-black/5 flex items-center gap-4 pt-safe-top">
+         <button onClick={onBack} className="p-2 -ml-2 rounded-full hover:bg-emerald-900/20 text-emerald-400/60 hover:text-emerald-400 transition-colors active:scale-90">
             <ChevronLeft className="w-6 h-6" />
          </button>
-         <p className="text-emerald-100/80 font-serif text-lg">Jelajahi ayat-ayat pilihan berdasarkan tema</p>
+         <p className="text-emerald-100/80 font-serif text-lg">Jelajahi Tema</p>
       </div>
 
       <div className="p-6 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -422,7 +429,7 @@ const CategorySelection = ({ onSelectCategory, onBack }: { onSelectCategory: (ca
           <div 
             key={cat.code}
             onClick={() => onSelectCategory(cat)}
-            className="glass-card p-6 rounded-2xl cursor-pointer hover:bg-emerald-900/60 transition-all group border-l-4 border-l-emerald-500/50 hover:border-l-emerald-400 flex flex-col justify-center min-h-[120px]"
+            className="glass-card p-6 rounded-2xl cursor-pointer hover:bg-emerald-900/60 transition-all group border-l-4 border-l-emerald-500/50 hover:border-l-emerald-400 flex flex-col justify-center min-h-[120px] active:scale-[0.98]"
             style={{ animationDelay: `${idx * 50}ms` }}
           >
             <div className="flex justify-between items-start mb-2">
@@ -441,9 +448,9 @@ const CategorySelection = ({ onSelectCategory, onBack }: { onSelectCategory: (ca
 
 const ThemeListSelection = ({ category, onSelectTheme, onBack }: { category: ThemeCategory, onSelectTheme: (theme: ThemeItem) => void, onBack: () => void }) => {
   return (
-    <div className="min-h-screen bg-background pb-20">
-       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-white/5 px-6 py-6 shadow-lg shadow-black/5 flex items-center gap-4">
-          <button onClick={onBack} className="p-2 -ml-2 rounded-full hover:bg-emerald-900/20 text-emerald-400/60 hover:text-emerald-400">
+    <div className="min-h-screen bg-background pb-20 pt-safe-top">
+       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-xl border-b border-white/5 px-6 py-6 shadow-lg shadow-black/5 flex items-center gap-4 pt-safe-top">
+          <button onClick={onBack} className="p-2 -ml-2 rounded-full hover:bg-emerald-900/20 text-emerald-400/60 hover:text-emerald-400 active:scale-90 transition-transform">
             <ChevronLeft className="w-6 h-6" />
           </button>
           <div>
@@ -457,7 +464,7 @@ const ThemeListSelection = ({ category, onSelectTheme, onBack }: { category: The
           <div 
             key={theme.id}
             onClick={() => onSelectTheme(theme)}
-            className="glass-card p-4 rounded-xl flex items-center gap-4 cursor-pointer hover:translate-x-1 transition-transform"
+            className="glass-card p-4 rounded-xl flex items-center gap-4 cursor-pointer hover:translate-x-1 transition-all active:scale-[0.98]"
             style={{ animationDelay: `${idx * 30}ms` }}
           >
              <div className="w-10 h-10 rounded-full bg-emerald-900/30 flex items-center justify-center text-emerald-400/80 font-serif font-bold text-sm shrink-0 border border-emerald-500/10">
@@ -507,22 +514,22 @@ const ReadingScreen = ({ theme, onBack }: { theme: ThemeItem, onBack: () => void
   if (verses.length === 0) return <div className="min-h-screen bg-background flex items-center justify-center text-emerald-500">Memuat Data...</div>;
 
   return (
-    <div className="min-h-screen bg-background text-emerald-50 pb-20 font-sans">
-      <div className="glass-panel sticky top-0 z-30 px-4 md:px-6 py-4 flex items-center justify-between">
-        <button onClick={onBack} className="text-emerald-400/60 hover:text-white transition-colors p-2 rounded-full hover:bg-emerald-900/20">
+    <div className="min-h-screen bg-background text-emerald-50 pb-20 font-sans pt-safe-top">
+      <div className="glass-panel sticky top-0 z-30 px-4 md:px-6 py-4 flex items-center justify-between pt-safe-top">
+        <button onClick={onBack} className="text-emerald-400/60 hover:text-white transition-colors p-2 rounded-full hover:bg-emerald-900/20 active:scale-90">
           <ChevronLeft className="w-5 h-5" />
         </button>
         <div className="flex flex-col items-center max-w-[60%]">
             <span className="text-[10px] text-emerald-500 tracking-[0.2em] uppercase font-bold truncate">Tafsir Tematik</span>
             <h2 className="font-serif text-white text-sm md:text-base mt-0.5 truncate text-center">{theme.title}</h2>
         </div>
-        <button onClick={() => setShowSettings(!showSettings)} className="text-emerald-400/60 hover:text-white p-2 rounded-full hover:bg-emerald-900/20">
+        <button onClick={() => setShowSettings(!showSettings)} className="text-emerald-400/60 hover:text-white p-2 rounded-full hover:bg-emerald-900/20 active:scale-90">
             <Type className="w-5 h-5" />
         </button>
       </div>
 
        {showSettings && (
-        <div className="fixed top-20 right-4 z-40 bg-emerald-950/95 border border-emerald-500/20 p-6 rounded-2xl shadow-2xl w-72 animate-fade-in-up backdrop-blur-xl">
+        <div className="fixed top-24 right-4 z-40 bg-emerald-950/95 border border-emerald-500/20 p-6 rounded-2xl shadow-2xl w-72 animate-fade-in-up backdrop-blur-xl">
             <div className="flex justify-between items-center mb-6">
                  <h4 className="text-xs uppercase text-emerald-500 tracking-wider font-bold">Tampilan Bacaan</h4>
                  <button onClick={() => setShowSettings(false)} className="text-emerald-700 hover:text-white text-xs">Tutup</button>

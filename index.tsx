@@ -392,16 +392,16 @@ const WelcomeScreen = ({ onStart }: { onStart: () => void }) => {
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-emerald-700/30 rounded-full blur-[120px] pointer-events-none animate-breathing"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-sand-400/10 rounded-full blur-[120px] pointer-events-none animate-breathing" style={{ animationDelay: '2s' }}></div>
 
-      <div className="z-10 text-center space-y-8 md:space-y-12 p-6 max-w-lg w-full animate-fade-in-up">
+      <div className="z-10 text-center space-y-6 md:space-y-12 p-6 max-w-lg w-full animate-fade-in-up">
         <div className="relative inline-block group cursor-pointer" onClick={onStart}>
              <div className="absolute inset-0 bg-emerald-500 blur-[80px] opacity-30 rounded-full group-hover:opacity-50 transition-opacity duration-700"></div>
-             <div className="relative z-10 w-28 h-28 mx-auto mb-6 rounded-[2rem] bg-gradient-to-br from-emerald-800 to-emerald-950 flex items-center justify-center border border-emerald-500/20 shadow-2xl shadow-emerald-900/50 transform group-hover:scale-105 transition-all duration-500 animate-float">
+             <div className="relative z-10 w-28 h-28 mx-auto mb-6 rounded-[2rem] bg-gradient-to-br from-emerald-800 to-emerald-950 flex items-center justify-center border border-emerald-500/20 shadow-2xl shadow-emerald-900/50 transform group-hover:scale-105 transition-all duration-500 animate-float active:scale-95">
                 <Book className="w-12 h-12 text-sand-400 drop-shadow-md" strokeWidth={1.5} />
              </div>
         </div>
 
         <div className="space-y-2">
-            <h1 className="text-5xl md:text-8xl font-serif text-white tracking-tight drop-shadow-2xl">Finding Tafsir</h1>
+            <h1 className="text-4xl md:text-7xl font-serif text-white tracking-tight drop-shadow-2xl">Finding Tafsir</h1>
         </div>
         
         <div className="glass-card px-8 py-6 rounded-3xl mx-4">
@@ -507,7 +507,7 @@ const CategorySelection = ({ onSelectCategory, onSelectTheme, onBack }: { onSele
               <div 
                 key={`${result.item.id}-${idx}`}
                 onClick={() => onSelectTheme(result.item)}
-                className="glass-card p-5 rounded-3xl flex items-center gap-5 cursor-pointer hover:bg-emerald-800/40 transition-all group"
+                className="glass-card p-5 rounded-3xl flex items-center gap-5 cursor-pointer hover:bg-emerald-800/40 transition-all group active:scale-[0.98]"
               >
                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-800 to-emerald-950 flex items-center justify-center text-sand-400 shrink-0 border border-emerald-500/20 group-hover:rotate-6 transition-transform shadow-lg">
                    <FileText className="w-5 h-5" />
@@ -531,7 +531,7 @@ const CategorySelection = ({ onSelectCategory, onSelectTheme, onBack }: { onSele
               <div 
                 key={cat.code}
                 onClick={() => onSelectCategory(cat)}
-                className="glass-card p-6 rounded-[2rem] cursor-pointer group relative overflow-hidden"
+                className="glass-card p-6 rounded-[2rem] cursor-pointer group relative overflow-hidden active:scale-[0.98] transition-transform"
                 style={{ animationDelay: `${idx * 50}ms` }}
               >
                 {/* Decorative Background Blob */}
@@ -574,7 +574,7 @@ const ThemeListSelection = ({ category, onSelectTheme, onBack }: { category: The
           <div 
             key={theme.id}
             onClick={() => onSelectTheme(theme)}
-            className="glass-card p-5 rounded-3xl flex items-center gap-5 cursor-pointer hover:bg-emerald-800/40 transition-all group active:scale-[0.99]"
+            className="glass-card p-5 rounded-3xl flex items-center gap-5 cursor-pointer hover:bg-emerald-800/40 transition-all group active:scale-[0.98]"
             style={{ animationDelay: `${idx * 50}ms` }}
           >
              <div className="w-12 h-12 rounded-full bg-emerald-900/30 flex items-center justify-center text-sand-200 font-serif font-bold text-lg shrink-0 border border-white/5 shadow-md group-hover:scale-110 transition-transform">

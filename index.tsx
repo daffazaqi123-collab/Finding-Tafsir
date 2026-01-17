@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ChevronLeft, Type, BookOpen, Book, ArrowRight, Grid, Search, X, FileText, Sparkles, Star, Heart, Share2 } from 'lucide-react';
+import { ChevronLeft, Type, BookOpen, Book, ArrowRight, Grid, Search, X, FileText, Sparkles, Star, Heart, Share2, Bookmark } from 'lucide-react';
 
 // --- TYPES & DATA STRUCTURES ---
 
@@ -86,7 +86,7 @@ const VERSE_LIBRARY: Record<string, Verse> = {
   "54_17": { surah: 54, number: 17, text: { arab: "وَلَقَدْ يَسَّرْنَا ٱلْقُرْءَانَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ" }, translation: { id: "Dan sesungguhnya telah Kami mudahkan Al-Qur'an untuk pelajaran, maka adakah orang yang mengambil pelajaran?" }, tafsir: { maudhui: "Ayat ini diulang empat kali dalam Surah Al-Qamar, menunjukkan penekanan yang sangat kuat. Ibnu Katsir menafsirkan 'Yassarna' sebagai kemudahan yang Allah berikan secara khusus pada Al-Qur'an. Lafazhnya dimudahkan untuk diucapkan dan dihafal (bahkan oleh anak kecil dan orang non-Arab), dan maknanya dimudahkan untuk dipahami bagi siapa saja yang mau merenunginya.\n\nTidak ada kitab suci lain di dunia yang dihafal huruf demi huruf oleh jutaan manusia selain Al-Qur'an. Ini adalah mukjizat yang nyata. Pertanyaan 'Fahal min muddakir' (Maka adakah orang yang mau mengambil pelajaran?) adalah undangan, tantangan, sekaligus motivasi dari Allah: 'Jalan sudah dimudahkan, pintu sudah dibuka, maka adakah yang mau masuk untuk mengambil ilmu dan peringatan darinya?'. Ibnu Katsir mengutip perkataan ulama: 'Tidak ada seorang pun yang berniat menghafal Quran kecuali Allah pasti akan membantunya'." } },
 
   // --- C. KENABIAN ---
-  "21_25": { surah: 21, number: 25, text: { arab: "وَمَآ أَرْسَلْنَا مِن قَبْلِكَ مِن رَّسُولٍ إِلَّا نُوحِىٓ إِلَيْهِ أَنَّهُۥ لَآ إِلَـٰهَ إِلَّآ أَنَا۠ فَٱعْبُدُونِ" }, translation: { id: "Kami tidak mengutus seorang rasul pun sebelum kamu melainkan Kami wahyukan... Bahwa tidak ada Tuhan selain Aku." }, tafsir: { maudhui: "Ayat ini adalah intisari dan benang merah dari seluruh risalah kenabian sepanjang sejarah manusia. Ibnu Katsir menyatakan bahwa setiap Nabi yang diutus Allah, dari Nuh AS, Ibrahim, Musa, Isa, hingga Muhammad SAW, membawa satu kalimat kunci yang sama: 'La ilaha illa Ana' (Tidak ada Tuhan yang berhak disembah selain Aku), maka sembahlah Aku.\n\nWalaupun syariat (hukum praktis, cara ibadah, halal-haram) bisa berbeda-beda antara satu nabi dengan nabi lain sesuai kondisi zaman dan kaumnya, namun Akidah (Tauhid) mereka adalah satu dan tidak pernah berubah (statis). Tidak ada nabi yang mengajarkan politeisme, penyembahan berhala, atau konsep trinitas. Semua menyeru kepada pengesaan Allah. Ini membuktikan bahwa Islam (dalam makna penyerahan diri kepada Allah) adalah agama universal seluruh nabi." } },
+  "21_25": { surah: 21, number: 25, text: { arab: "وَمَآ أَرْسَلْنَا مِن قَبْلِكَ مِن رَّسُولٍ إِلَّا نُوحِىٓ إِلَيْهِ أَنَّهُۥ لَآ إِلَـٰهَ إِلَّآ أَنَا۠ فَٱعْبُدُونِ" }, translation: { id: "Kami tidak mengutus seorang rasul pun sebelum kamu melainkan Kami wahyukan... Bahwa tidak ada Tuhan selain Aku." }, tafsir: { maudhui: "Ayat ini adalah intisari dan benang merah dari seluruh risalah kenabian sepanjang sejarah manusia. Ibnu Katsir menyatakan bahwa setiap Nabi yang diutus Allah, dari Nuh AS, Ibrahim, Musa, Isa, dan Muhammad SAW, membawa satu kalimat kunci yang sama: 'La ilaha illa Ana' (Tidak ada Tuhan yang berhak disembah selain Aku), maka sembahlah Aku.\n\nWalaupun syariat (hukum praktis, cara ibadah, halal-haram) bisa berbeda-beda antara satu nabi dengan nabi lain sesuai kondisi zaman dan kaumnya, namun Akidah (Tauhid) mereka adalah satu dan tidak pernah berubah (statis). Tidak ada nabi yang mengajarkan politeisme, penyembahan berhala, atau konsep trinitas. Semua menyeru kepada pengesaan Allah. Ini membuktikan bahwa Islam (dalam makna penyerahan diri kepada Allah) adalah agama universal seluruh nabi." } },
   "42_13": { surah: 42, number: 13, text: { arab: "۞ شَرَعَ لَكُم مِّنَ ٱلدِّينِ مَا وَصَّىٰ بِهِۦ نُوحًا وَٱلَّذِىٓ أَوْحَيْنَآ إِلَيْكَ..." }, translation: { id: "Dia telah mensyariatkan bagi kamu tentang agama apa yang telah diwasiatkan-Nya kepada Nuh..." }, tafsir: { maudhui: "Ibnu Katsir menjelaskan ayat ini sebagai dalil kesatuan 'Millah' (agama/prinsip dasar) para Nabi Ulul Azmi (Nuh, Ibrahim, Musa, Isa, dan Muhammad SAW). Mereka semua membawa wasiat yang sama dari Allah. Pesan inti wasiat tersebut ada dua: 'Aqimud-din' (tegakkanlah agama/tauhid dan ketaatan) dan 'Wala tatafarraqu fih' (janganlah kalian berpecah belah di dalamnya).\n\nPerpecahan umat terjadi bukan karena perbedaan ajaran asli para nabi, melainkan karena kedengkian (baghyan), fanatisme, dan hawa nafsu para pengikut setelah ilmu datang kepada mereka. Ayat ini menyerukan persatuan umat manusia di atas prinsip-prinsip fundamental agama samawi yang lurus, yaitu mengesakan Allah dan tidak menyekutukan-Nya." } },
   "16_36": { surah: 16, number: 36, text: { arab: "وَلَقَدْ بَعَثْنَا فِي كُلِّ أُمَّةٍۢ رَّسُولًا أَنِ ٱعْبُدُوا۟ ٱللَّهَ وَٱجْتَنِبُوا۟ ٱلطَّـٰغُوتَ..." }, translation: { id: "Dan sungguh Kami telah mengutus rasul pada tiap-tiap umat (untuk menyerukan): 'Sembahlah Allah, dan jauhilah Thaghut'..." }, tafsir: { maudhui: "Ibnu Katsir menjelaskan bahwa melalui ayat ini, Allah telah menegakkan Hujjah (argumen/alasan) kepada seluruh umat manusia. Tidak ada satu pun umat atau generasi yang dibiarkan tanpa peringatan; Allah telah mengutus Rasul kepada setiap umat dengan misi yang seragam.\n\nMisi para Rasul ini ibarat dua sisi mata uang yang tidak bisa dipisahkan: 1) Itsbat (Penetapan): 'Sembahlah Allah', menetapkan ibadah hanya kepada-Nya. 2) Nafi (Penolakan): 'Jauhilah Thaghut'. Thaghut menurut Ibnu Katsir adalah segala sesuatu yang disembah selain Allah (setan, berhala, dukun, pemimpin zalim yang mengajak kekafiran). Siapa yang menyembah Allah tetapi tidak mengingkari Thaghut, maka dia belum bertauhid dengan benar. Inilah makna 'La ilaha illallah' (Tiada tuhan selain Allah)." } },
   "2_213": { surah: 2, number: 213, text: { arab: "كَانَ ٱلنَّاسُ أُمَّةًۭ وَٰحِدَةًۭ فَبَعَثَ ٱللَّهُ ٱلنَّبِيِّۦنَ مُبَشِّرِينَ وَمُنذِرِينَ..." }, translation: { id: "Manusia itu adalah umat yang satu. Maka Allah mengutus para nabi sebagai pemberi kabar gembira dan pemberi peringatan..." }, tafsir: { maudhui: "Ibnu Katsir, merujuk pada riwayat Ibnu Abbas r.a., menjelaskan fakta sejarah bahwa antara masa Nabi Adam dan Nabi Nuh terdapat jarak 10 abad (generasi), dan seluruh manusia saat itu berada di atas Islam (Tauhid). Mereka adalah 'Umat yang Satu' dalam akidah.\n\nNamun, setelah itu terjadi perselisihan dan munculnya kesyirikan (penyembahan berhala), maka Allah mulai mengutus Nuh AS dan nabi-nabi setelahnya. Fungsi utama para Nabi dijelaskan sebagai: 'Mubasyirin' (memberi kabar gembira surga bagi yang taat) dan 'Munzirin' (memberi peringatan neraka bagi yang maksiat). Bersama para Nabi, Allah menurunkan Al-Kitab yang berisi kebenaran sebagai 'Hakam' (hakim pemutus) yang adil untuk menyelesaikan perselisihan manusia dengan standar wahyu, bukan dengan hawa nafsu atau akal semata." } },
@@ -99,7 +99,7 @@ const VERSE_LIBRARY: Record<string, Verse> = {
   "33_40": { surah: 33, number: 40, text: { arab: "مَّا كَانَ مُحَمَّدٌ أَبَآ أَحَدٍۢ مِّن رِّجَالِكُمْ وَلَـٰكِن رَّسُولَ ٱللَّهِ وَخَاتَمَ ٱلنَّبِيِّۦنَ..." }, translation: { id: "...tetapi dia adalah Rasulullah dan penutup nabi-nabi..." }, tafsir: { maudhui: "Ibnu Katsir menegaskan bahwa ayat ini adalah nash mutawatir (dalil yang pasti dan tak terbantahkan) bahwa tidak ada Nabi setelah Muhammad SAW. Kata 'Khatam' berarti cincin penutup, segel, atau stempel akhir yang menutup surat. Jika tidak ada Nabi setelah beliau, maka otomatis tidak ada Rasul (karena setiap Rasul pasti Nabi, tapi tidak sebaliknya).\n\nKonsekuensi ayat ini adalah: Barangsiapa yang mengaku menjadi Nabi setelah Muhammad SAW, maka dia adalah Dajjal, pendusta, dan sesat, betapapun dia memamerkan hal-hal aneh atau sihir. Syariat Nabi Muhammad SAW adalah syariat final yang sempurna, yang berlaku kekal hingga hari kiamat, dan mencakup seluruh umat manusia dan jin. Beliau menyempurnakan bangunan kenabian yang telah disusun oleh para nabi sebelumnya." } },
 
   // --- D. IBADAH ---
-  "51_56": { surah: 51, number: 56, text: { arab: "وَمَا خَلَقْتُ ٱلْجِنَّ وَٱلْإِنسَ إِلَّا لِيَعْبُدُونِ" }, translation: { id: "Aku tidak menciptakan jin dan manusia melainkan agar mereka beribadah kepada-Ku." }, tafsir: { maudhui: "Ayat ini menjelaskan 'Raison d'etre' (tujuan eksistensial) penciptaan makhluk berakal. Ibnu Katsir menjelaskan bahwa Allah menciptakan manusia dan jin bukan karena Dia kesepian dan butuh teman, bukan karena Dia lemah dan butuh bantuan, dan bukan karena Dia miskin dan butuh rezeki dari mereka (sebagaimana ditegaskan di ayat selanjutnya). Allah Maha Kaya (Ghaniy) dan Maha Terpuji.\n\nDia menciptakan mereka untuk satu tujuan mulia: Agar mereka menyembah-Nya dengan sukarela. Ibnu Abbas r.a. menafsirkan 'Li-ya'budun' (agar beribadah) sebagai 'Li-yuwahhidun' (agar mereka mentauhidkan-Ku). Konsekuensinya: Siapa yang taat beribadah, ia telah memenuhi tujuan penciptaannya dan akan dibalas dengan surga. Siapa yang enggan atau sombong dari ibadah, ia telah gagal dalam ujian eksistensinya dan akan diazab. Ibadah adalah kebutuhan hamba, bukan kebutuhan Allah." } },
+  "51_56": { surah: 51, number: 56, text: { arab: "وَمَا خَلَقْتُ ٱلْجِنَّ وَٱلْإِنسَ إِلَّا لِيَعْبُدُونِ" }, translation: { id: "Aku tidak menciptakan jin dan manusia melainkan agar mereka beribadah kepada-Ku." }, tafsir: { maudhui: "Ayat ini menjelaskan 'Raison d'etre' (tujuan eksistensial) penciptaan makhluk berakal. Ibnu Katsir menjelaskan bahwa Allah menciptakan manusia dan jin bukan karena Dia kesepian dan butuh teman, bukan karena Dia lemah dan butuh bantuan, dan bukan karena Dia miskin dan butuh rezeki dari mereka (sebagaimana ditegaskan di ayat selanjutnya). Allah Maha Kaya (Ghaniy) dan Maha Terpuji.\n\nDia menciptakan mereka untuk satu tujuan mulia: Agar mereka menyembah-Nya dengan sukarela. Ibnu Abbas r.a. menafsirkan 'Li-ya'budun' (agar beribadah) sebagai 'Li-yuwahhidun' (agar mereka mentauhidkan-Ku). Konsekuensinya: Siapa yang taat beribadah, ia telah memenuhi tujuan penciptaan dan akan dibalas dengan surga. Siapa yang enggan atau sombong dari ibadah, ia telah gagal dalam ujian eksistensinya dan akan diazab. Ibadah adalah kebutuhan hamba, bukan kebutuhan Allah." } },
   "2_43": { surah: 2, number: 43, text: { arab: "وَأَقِيمُوا۟ ٱلصَّلَوٰةَ وَءَاتُوا۟ ٱلزَّكَوٰةَ..." }, translation: { id: "Dan dirikanlah salat, tunaikanlah zakat..." }, tafsir: { maudhui: "Ibnu Katsir menjelaskan bahwa ayat ini menggabungkan dua pilar utama dalam agama Islam: Shalat dan Zakat. Shalat adalah simbol 'Hablum Minallah' (hubungan vertikal/ibadah badan), sedangkan Zakat adalah simbol 'Hablum Minannas' (hubungan horizontal/ibadah harta dan sosial).\n\nKata 'Aqimu' (Dirikanlah) bermakna bukan sekadar mengerjakan gerakan shalat, tetapi melaksanakannya dengan menyempurnakan rukun, syarat, waktu, dan kekhusyukan. Perintah selanjutnya 'War-ka'u ma'ar raki'in' (Dan rukuklah bersama orang-orang yang rukuk) menurut banyak ulama adalah dalil tentang kewajiban atau keutamaan shalat berjamaah. Islam bukan agama pertapa yang menyendiri, tetapi agama komunitas yang membangun kesalehan sosial melalui shalat berjamaah dan solidaritas zakat." } },
   "29_45": { surah: 29, number: 45, text: { arab: "ٱتْلُ مَآ أُوحِىَ إِلَيْكَ مِنَ ٱلْكِتَـٰبِ وَأَقِمِ ٱلصَّلَوٰةَ ۖ إِنَّ ٱلصَّلَوٰةَ تَنْهَىٰ عَنِ ٱلْفَحْشَآءِ وَٱلْمُنكَرِ..." }, translation: { id: "Bacalah apa yang telah diwahyukan kepadamu... dan dirikanlah salat. Sesungguhnya salat itu mencegah dari (perbuatan-perbuatan) keji dan mungkar..." }, tafsir: { maudhui: "Ibnu Katsir menjelaskan fungsi transformatif dan preventif dari shalat. Shalat yang benar—yang dilakukan dengan khusyuk, memahami bacaan, dan menghadirkan keagungan Allah—akan meninggalkan bekas (atsar) pada jiwa pelakunya. Bekas itu berupa rasa takut kepada Allah dan cahaya iman yang secara otomatis menjadi benteng yang mencegahnya dari perbuatan Keji (Fahsyah/Zina/Dosa besar) dan Mungkar (pelanggaran syariat).\n\nIbnu Katsir mengutip hadits (riwayat Ibnu Abi Hatim): 'Barangsiapa yang shalatnya tidak mencegahnya dari perbuatan keji dan mungkar, maka tidak bertambah darinya kecuali kejauhan dari Allah.' Ini menunjukkan bahwa shalat bukan sekadar ritual fisik, tetapi sarana pendidikan jiwa. Selanjutnya, Allah menyebutkan 'Wala dzikrullahi akbar' (Dan mengingat Allah itu lebih besar keutamaannya), artinya shalat sebagai sarana dzikir adalah hal terbesar dalam agama." } },
   "9_103": { surah: 9, number: 103, text: { arab: "خُذْ مِنْ أَمْوَٰلِهِمْ صَدَقَةًۭ تُطَهِّرُهُمْ وَتُزَكِّيهِم بِهَا..." }, translation: { id: "Ambillah zakat dari sebagian harta mereka..." }, tafsir: { maudhui: "Ayat ini turun berkenaan dengan taubat orang-orang yang tidak ikut perang Tabuk, namun hukumnya berlaku umum tentang kewajiban Zakat bagi pemimpin untuk mengambilnya dari orang kaya. Ibnu Katsir menjelaskan dua fungsi fundamental Zakat/Sedekah bagi pelakunya:\n\n1) Tuthahhiruhum (Membersihkan mereka): Membersihkan jiwa dari kotoran dosa, sifat kikir, bakhil, dan cinta dunia yang berlebihan. 2) Tuzakkihim (Mensucikan/Menumbuhkan mereka): Menumbuhkan akhlak mulia, menyuburkan keberkahan harta, dan mengangkat derajat di sisi Allah. \n\nSelanjutnya Allah memerintahkan Nabi: 'Wa shalli 'alaihim' (Dan doakanlah mereka). Doa Nabi menjadi 'Sakan' (ketenangan/ketenteraman jiwa) bagi mereka, meyakinkan mereka bahwa taubat dan amal mereka telah diterima Allah. Ini menunjukkan etika petugas zakat untuk mendoakan muzakki." } },
@@ -176,7 +176,7 @@ const VERSE_LIBRARY: Record<string, Verse> = {
   "28_3": { surah: 28, number: 3, text: { arab: "نَتْلُوا۟ عَلَيْكَ مِن نَّبَإِ مُوسَىٰ وَفِرْعَوْنَ بِٱلْحَقِّ" }, translation: { id: "Kami membacakan kepadamu sebagian dari kisah Musa dan Fir'aun dengan benar..." }, tafsir: { maudhui: "Allah membuka kisah Musa dengan penegasan 'Bil-Haq' (dengan benar/faktual), membantah dongeng-dongeng Israiliyat yang mungkin sudah terdistorsi di tangan Ahli Kitab. Kisah Musa dan Firaun adalah kisah yang paling sering diulang dalam Al-Qur'an dengan berbagai sudut pandang karena mengandung pelajaran (Ibrah) yang paling komprehensif.\n\nKisah ini melambangkan pertarungan abadi antara Al-Haq (Kebenaran) melawan Al-Batil (Kebatilan). Firaun merepresentasikan puncak kesombongan kekuasaan politik yang tiran (Thaghut) yang mengaku Tuhan, didukung kekuatan militer (Haman) dan ekonomi (Qarun). Sementara Musa merepresentasikan kekuatan iman, wahyu, dan tawakal meskipun awalnya lemah secara fisik. Kisah ini ditujukan khusus 'bagi kaum yang beriman' agar mereka mengambil pelajaran bahwa betapapun kuatnya kekuasaan zalim, ia pasti akan hancur di tangan kehendak Allah dan pewaris bumi adalah orang-orang yang tertindas namun beriman." } },
   "28_30": { surah: 28, number: 30, text: { arab: "فَلَمَّآ أَتَىٰهَا نُودِىَ مِن شَـٰطِىِٕ ٱلْوَادِ ٱلْأَيْمَنِ... أَن يَـٰمُوسَىٰٓ إِنِّىٓ أَنَا ٱللَّهُ" }, translation: { id: "Maka tatkala Musa sampai ke (tempat) api itu, diserulah dia... 'Wahai Musa, sesungguhnya Aku adalah Allah'..." }, tafsir: { maudhui: "Ini adalah momen sakral pelantikan Musa sebagai Nabi dan Kalimullah (orang yang diajak bicara langsung oleh Allah). Peristiwa ini terjadi di Lembah Suci Thuwa, di sisi kanan gunung Tursina yang diberkahi. Ibnu Katsir menggambarkan situasi Musa yang saat itu sedang dalam perjalanan dari Madyan ke Mesir. Malam itu gelap gulita, dingin, hujan, dan Musa tersesat jalan bersama keluarganya. Ia melihat api dari kejauhan dan mendekatinya hanya untuk mencari kehangatan atau petunjuk jalan (tujuan duniawi).\n\nTernyata, ia menemukan sesuatu yang jauh lebih besar dari sekadar api: Cahaya Hidayah dan Wahyu Ilahi. Allah menyerunya langsung: 'Wahai Musa, sesungguhnya Aku adalah Allah, Tuhan semesta alam'. Pelajaran spiritualnya adalah: Seringkali Allah memberikan anugerah terbesar-Nya justru di saat hamba berada dalam kondisi paling genting, bingung, fakir, dan putus asa dari pertolongan manusia. Niat Musa mencari api dunia diganti Allah dengan Cahaya Kenabian." } },
   "12_4": { surah: 12, number: 4, text: { arab: "إِذْ قَالَ يُوسُفُ لِأَبِيهِ يَـٰٓأَبَتِ إِنِّى رَأَيْتُ أَحَدَ عَشَرَ كَوْكَبًا..." }, translation: { id: "(Ingatlah), ketika Yusuf berkata kepada ayahnya: 'Wahai ayahku, sesungguhnya aku bermimpi melihat sebelas bintang, matahari dan bulan...'" }, tafsir: { maudhui: "Surah Yusuf disebut Allah sebagai 'Ahsanul Qashash' (Kisah Terbaik) karena alurnya yang indah, penuh intrik, emosi, dan hikmah. Kisah ini dibuka dengan mimpi kenabian Yusuf a.s. di masa kecil. Ia melihat 11 bintang (melambangkan saudara-saudaranya), matahari (ayahnya), dan bulan (ibunya) bersujud kepadanya. Ini adalah isyarat bahwa kelak ia akan menjadi pemimpin besar yang dimuliakan keluarganya.\n\nYa'qub a.s., sang ayah yang juga Nabi, segera memahami takwil mimpi ini. Namun, respon pertamanya adalah peringatan kewaspadaan: 'Wahai anakku, janganlah kamu ceritakan mimpimu itu kepada saudara-saudaramu, maka mereka akan membuat makar (rencana jahat) untuk membinasakanmu'. Ini mengajarkan prinsip 'Kitsman' (merahasiakan) nikmat atau rencana besar dari orang yang berpotensi dengki (hasad), bahkan dari kerabat dekat sendiri. 'Ista'inu 'ala qadhai hawaijikum bil kitman' (Bantu suksesnya hajatmu dengan merahasiakannya). Kisah ini mengajarkan optimisme: bahwa penderitaan (dibuang ke sumur, dijual jadi budak, dipenjara) hanyalah tangga proses menuju takdir indah." } },
-  "2_40": { surah: 2, number: 40, text: { arab: "يَـٰبَنِىٓ إِسْرَٰٓءِيلَ ٱذْكُرُوا۟ نِعْمَتِىَ ٱلَّتِىٓ أَنْعَمْتُ عَلَيْكُمْ وَأَوْفُوا۟ بِعَهْدِىٓ أُوفِ بِعَهْدِكُمْ" }, translation: { id: "Hai Bani Israil, ingatlah akan nikmat-Ku yang telah Aku anugerahkan kepadamu, dan penuhilah janjimu kepada-Ku..." }, tafsir: { maudhui: "Ayat ini adalah seruan pembuka dari serangkaian peringatan panjang kepada Bani Israil (keturunan Ya'qub). Ibnu Katsir menjelaskan bahwa Allah mengingatkan mereka akan nikmat-nikmat eksklusif yang pernah diberikan kepada nenek moyang mereka: diselamatkan dari Firaun, dibelahkan lautan, diturunkan Manna dan Salwa, dinaungi awan, dan diutus ratusan Nabi dari kalangan mereka.\n\nAllah menagih janji setia yang tertulis di Taurat: Bahwa mereka akan beriman kepada Nabi penutup (Muhammad SAW) yang sifat-sifatnya (Ummi, terpercaya) tertulis jelas dalam kitab mereka. 'Penuhilah janjimu kepada-Ku (iman kepada Muhammad), niscaya Aku penuhi janji-Ku kepadamu (masuk surga dan dihapus dosa)'. Ayat ini adalah teguran keras bagi umat yang mengetahui kebenaran tapi menyembunyikannya karena arogansi rasial (merasa bangsa pilihan) dan kepentingan duniawi." } },
+  "2_40": { surah: 2, number: 40, text: { arab: "يَـٰبَنِىٓ إِسْرَٰٓءِيلَ ٱذْكُرُوا۟ نِعْمَتِىَ ٱلَّذِىٓ أَنْعَمْتُ عَلَيْكُمْ وَأَوْفُوا۟ بِعَهْدِىٓ أُوفِ بِعَهْدِكُمْ" }, translation: { id: "Hai Bani Israil, ingatlah akan nikmat-Ku yang telah Aku anugerahkan kepadamu, dan penuhilah janjimu kepada-Ku..." }, tafsir: { maudhui: "Ayat ini adalah seruan pembuka dari serangkaian peringatan panjang kepada Bani Israil (keturunan Ya'qub). Ibnu Katsir menjelaskan bahwa Allah mengingatkan mereka akan nikmat-nikmat eksklusif yang pernah diberikan kepada nenek moyang mereka: diselamatkan dari Firaun, dibelahkan lautan, diturunkan Manna dan Salwa, dinaungi awan, dan diutus ratusan Nabi dari kalangan mereka.\n\nAllah menagih janji setia yang tertulis di Taurat: Bahwa mereka akan beriman kepada Nabi penutup (Muhammad SAW) yang sifat-sifatnya (Ummi, terpercaya) tertulis jelas dalam kitab mereka. 'Penuhilah janjimu kepada-Ku (iman kepada Muhammad), niscaya Aku penuhi janji-Ku kepadamu (masuk surga dan dihapus dosa)'. Ayat ini adalah teguran keras bagi umat yang mengetahui kebenaran tapi menyembunyikannya karena arogansi rasial (merasa bangsa pilihan) dan kepentingan duniawi." } },
   "18_13": { surah: 18, number: 13, text: { arab: "نَّحْنُ نَقُصُّ عَلَيْكَ نَبَأَهُم بِٱلْحَقِّ ۚ إِنَّهُمْ فِتْيَةٌ ءَامَنُوا۟ بِرَبِّهِمْ وَزِدْنَـٰهُمْ هُدًى" }, translation: { id: "Kami kisahkan kepadamu (Muhammad) cerita ini dengan benar. Sesungguhnya mereka adalah pemuda-pemuda yang beriman kepada Tuhan mereka, dan Kami tambah pula untuk mereka petunjuk." }, tafsir: { maudhui: "Kisah Ashabul Kahfi adalah simbol perlawanan akidah kaum muda. Ibnu Katsir menjelaskan bahwa mereka adalah sekelompok pemuda (Fityah) dari kalangan elit/bangsawan Romawi yang sadar akan kebatilan penyembahan berhala yang dipaksakan oleh Raja Dikyanus. Mereka tidak memiliki nabi di tengah mereka, namun Allah memberikan hidayah langsung ke dalam hati mereka (Ilham).\n\nDemi menyelamatkan iman, mereka memilih opsi radikal: 'Uzlah' (mengasingkan diri) ke gua yang sempit, gelap, dan kasar, meninggalkan kenyamanan istana dan kemewahan duniawi. Mereka lebih memilih tidur di gua bersama iman daripada hidup di istana tanpa iman. Allah membalas pengorbanan mereka dengan menjaga jasad mereka tetap utuh selama 309 tahun dalam tidur panjang, sebagai tanda kekuasaan-Nya membangkitkan manusia di hari kiamat. Pelajarannya: Anak muda adalah pilar perubahan (Agent of Change), dan menjaga iman di lingkungan yang rusak membutuhkan keberanian untuk 'berbeda' dan memisahkan diri dari kebatilan." } },
   "15_73": { surah: 15, number: 73, text: { arab: "فَأَخَذَتْهُمُ ٱلصَّيْحَةُ مُشْرِقِينَ" }, translation: { id: "Maka mereka dibinasakan oleh suara keras yang mengguntur, ketika matahari akan terbit." }, tafsir: { maudhui: "Ayat ini menceritakan detik-detik kehancuran kaum Sodom (umat Nabi Luth) yang melakukan penyimpangan seksual (homoseksual/LGBT). Ibnu Katsir menjelaskan kronologi azab yang mengerikan ini. Ketika matahari mulai terbit (Musyriqin), datanglah 'Ash-Shaihah', yaitu suara teriakan/dentuman sonik yang sangat dahsyat dari langit (Malaikat Jibril) yang mengguncang jantung hingga copot.\n\nTidak hanya itu, Malaikat Jibril mengangkat kota mereka ke langit, lalu membalikkannya (bagian atas ke bawah/Jadikal aliha safilaha) dan menghempaskannya kembali ke bumi, lalu menghujani mereka dengan batu dari tanah yang terbakar (Sijjil). Hukuman berlapis ini diturunkan karena mereka melampaui batas fitrah manusia, melakukan kejahatan yang belum pernah dilakukan umat sebelumnya, dan menantang azab Allah dengan sombong. Ini adalah peringatan sejarah bahwa peradaban yang merusak fitrah moralitas dan biologi manusia pasti akan dihapuskan oleh Allah dari muka bumi." } },
 
@@ -381,6 +381,15 @@ const TOPIC_DATA: ThemeCategory[] = [
   }
 ];
 
+// Helper to find a theme object by its ID across all categories
+const getThemeById = (id: number): ThemeItem | undefined => {
+  for (const cat of TOPIC_DATA) {
+    const item = cat.items.find(i => i.id === id);
+    if (item) return item;
+  }
+  return undefined;
+};
+
 // --- COMPONENTS ---
 
 const WelcomeScreen = ({ onStart }: { onStart: () => void }) => {
@@ -423,7 +432,19 @@ const WelcomeScreen = ({ onStart }: { onStart: () => void }) => {
   );
 };
 
-const CategorySelection = ({ onSelectCategory, onSelectTheme, onBack }: { onSelectCategory: (cat: ThemeCategory) => void, onSelectTheme: (theme: ThemeItem) => void, onBack: () => void }) => {
+const CategorySelection = ({ 
+  onSelectCategory, 
+  onSelectTheme, 
+  onBack, 
+  bookmarkedCount, 
+  onOpenBookmarks 
+}: { 
+  onSelectCategory: (cat: ThemeCategory) => void, 
+  onSelectTheme: (theme: ThemeItem) => void, 
+  onBack: () => void,
+  bookmarkedCount: number,
+  onOpenBookmarks: () => void
+}) => {
   const [query, setQuery] = useState('');
 
   const filteredItems = useMemo(() => {
@@ -527,6 +548,25 @@ const CategorySelection = ({ onSelectCategory, onSelectTheme, onBack }: { onSele
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in-up">
+            
+            {/* BOOKMARK CARD - Placed at the top */}
+            <div 
+              onClick={onOpenBookmarks}
+              className="glass-card p-6 rounded-[2rem] cursor-pointer group relative overflow-hidden active:scale-[0.98] transition-transform border-sand-400/30"
+            >
+              <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-sand-400/10 rounded-full blur-2xl group-hover:bg-sand-400/20 transition-colors duration-500"></div>
+              <div className="flex justify-between items-start mb-4 relative z-10">
+                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sand-800/30 to-sand-950/30 flex items-center justify-center text-sand-300 group-hover:text-sand-200 transition-colors border border-sand-400/20 shadow-inner">
+                  <Bookmark className="w-6 h-6 opacity-90 fill-sand-400/20" />
+                </div>
+                <div className="px-3 py-1 rounded-full bg-emerald-950/50 border border-emerald-500/10 text-[10px] text-emerald-400/80">
+                  {bookmarkedCount} Tersimpan
+                </div>
+              </div>
+              <h3 className="text-2xl font-serif text-sand-100 mb-2 relative z-10 group-hover:translate-x-1 transition-transform">Bookmark</h3>
+              <div className="h-1 w-12 bg-sand-600/50 rounded-full group-hover:w-full group-hover:bg-sand-400 transition-all duration-700"></div>
+            </div>
+
             {TOPIC_DATA.map((cat, idx) => (
               <div 
                 key={cat.code}
@@ -569,35 +609,52 @@ const ThemeListSelection = ({ category, onSelectTheme, onBack }: { category: The
       </div>
 
       <div className="p-4 md:p-6 max-w-4xl mx-auto space-y-3">
-        {category.items.map((theme, idx) => (
-          <div 
-            key={theme.id}
-            onClick={() => onSelectTheme(theme)}
-            className="glass-card p-5 rounded-3xl flex items-center gap-5 cursor-pointer hover:bg-emerald-800/40 transition-all group active:scale-[0.98]"
-            style={{ animationDelay: `${idx * 50}ms` }}
-          >
-             <div className="w-12 h-12 rounded-full bg-emerald-900/30 flex items-center justify-center text-sand-200 font-serif font-bold text-lg shrink-0 border border-white/5 shadow-md group-hover:scale-110 transition-transform">
-               {idx + 1}
-             </div>
-             <div className="flex-1">
-               <h3 className="text-white font-serif text-lg leading-snug group-hover:text-sand-100 transition-colors">{theme.title}</h3>
-               <div className="flex items-center gap-2 mt-1.5">
-                 <span className="text-[11px] text-emerald-400/60 font-mono tracking-tight flex items-center gap-1">
-                   <BookOpen className="w-3 h-3" /> {theme.ref}
-                 </span>
-               </div>
-             </div>
-             <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 group-hover:bg-sand-400/20 transition-colors">
-                <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:text-sand-300 transition-colors" />
-             </div>
+        {category.items.length === 0 ? (
+          <div className="text-center py-20 opacity-60">
+            <Bookmark className="w-16 h-16 mx-auto mb-4 text-emerald-600" />
+            <p className="text-lg text-emerald-200">Belum ada item yang disimpan.</p>
           </div>
-        ))}
+        ) : (
+          category.items.map((theme, idx) => (
+            <div 
+              key={theme.id}
+              onClick={() => onSelectTheme(theme)}
+              className="glass-card p-5 rounded-3xl flex items-center gap-5 cursor-pointer hover:bg-emerald-800/40 transition-all group active:scale-[0.98]"
+              style={{ animationDelay: `${idx * 50}ms` }}
+            >
+               <div className="w-12 h-12 rounded-full bg-emerald-900/30 flex items-center justify-center text-sand-200 font-serif font-bold text-lg shrink-0 border border-white/5 shadow-md group-hover:scale-110 transition-transform">
+                 {idx + 1}
+               </div>
+               <div className="flex-1">
+                 <h3 className="text-white font-serif text-lg leading-snug group-hover:text-sand-100 transition-colors">{theme.title}</h3>
+                 <div className="flex items-center gap-2 mt-1.5">
+                   <span className="text-[11px] text-emerald-400/60 font-mono tracking-tight flex items-center gap-1">
+                     <BookOpen className="w-3 h-3" /> {theme.ref}
+                   </span>
+                 </div>
+               </div>
+               <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white/5 group-hover:bg-sand-400/20 transition-colors">
+                  <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:text-sand-300 transition-colors" />
+               </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   )
 }
 
-const ReadingScreen = ({ theme, onBack }: { theme: ThemeItem, onBack: () => void }) => {
+const ReadingScreen = ({ 
+  theme, 
+  onBack, 
+  isBookmarked, 
+  toggleBookmark 
+}: { 
+  theme: ThemeItem, 
+  onBack: () => void,
+  isBookmarked: boolean,
+  toggleBookmark: () => void
+}) => {
   const [verses, setVerses] = useState<Verse[]>([]);
   const [textSize, setTextSize] = useState(1); 
   const [showSettings, setShowSettings] = useState(false);
@@ -637,9 +694,17 @@ const ReadingScreen = ({ theme, onBack }: { theme: ThemeItem, onBack: () => void
             <h2 className="font-serif text-sand-100 text-lg md:text-xl truncate text-center leading-tight">{theme.title}</h2>
             <span className="text-[10px] text-emerald-500 uppercase tracking-widest mt-0.5">{theme.ref}</span>
         </div>
-        <button onClick={() => setShowSettings(!showSettings)} className="text-emerald-300 hover:text-white p-2 rounded-full hover:bg-emerald-800/30 active:scale-90">
-            <Type className="w-6 h-6" />
-        </button>
+        <div className="flex items-center gap-2">
+            <button 
+                onClick={toggleBookmark} 
+                className={`transition-colors p-2 rounded-full hover:bg-emerald-800/30 active:scale-90 ${isBookmarked ? 'text-sand-400' : 'text-emerald-300 hover:text-white'}`}
+            >
+                <Bookmark className={`w-6 h-6 ${isBookmarked ? 'fill-sand-400' : ''}`} />
+            </button>
+            <button onClick={() => setShowSettings(!showSettings)} className="text-emerald-300 hover:text-white p-2 rounded-full hover:bg-emerald-800/30 active:scale-90">
+                <Type className="w-6 h-6" />
+            </button>
+        </div>
       </div>
 
        {showSettings && (
@@ -738,15 +803,50 @@ const App = () => {
   const [screen, setScreen] = useState<'welcome' | 'categories' | 'themelist' | 'reading'>('welcome');
   const [selectedCategory, setSelectedCategory] = useState<ThemeCategory | null>(null);
   const [selectedTheme, setSelectedTheme] = useState<ThemeItem | null>(null);
+  const [bookmarks, setBookmarks] = useState<number[]>(() => {
+    // Initialize bookmarks from local storage
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('finding-tafsir-bookmarks');
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
 
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
 
+  useEffect(() => {
+    // Save bookmarks to local storage whenever they change
+    localStorage.setItem('finding-tafsir-bookmarks', JSON.stringify(bookmarks));
+  }, [bookmarks]);
+
+  const toggleBookmark = (themeId: number) => {
+    setBookmarks(prev => 
+      prev.includes(themeId) 
+        ? prev.filter(id => id !== themeId) 
+        : [...prev, themeId]
+    );
+  };
+
   const handleStart = () => setScreen('categories');
 
   const handleSelectCategory = (cat: ThemeCategory) => {
     setSelectedCategory(cat);
+    setScreen('themelist');
+  };
+
+  const handleOpenBookmarks = () => {
+    // Construct a dynamic "Bookmarks" category
+    const bookmarkedThemes = bookmarks.map(id => getThemeById(id)).filter((item): item is ThemeItem => item !== undefined);
+    
+    const bookmarkCategory: ThemeCategory = {
+      code: 'BM',
+      title: 'Daftar Bookmark',
+      items: bookmarkedThemes
+    };
+    
+    setSelectedCategory(bookmarkCategory);
     setScreen('themelist');
   };
 
@@ -773,9 +873,30 @@ const App = () => {
   return (
     <div className="font-sans antialiased text-slate-200 bg-background min-h-screen selection:bg-sand-400/30 selection:text-white">
       {screen === 'welcome' && <WelcomeScreen onStart={handleStart} />}
-      {screen === 'categories' && <CategorySelection onSelectCategory={handleSelectCategory} onSelectTheme={handleSelectTheme} onBack={handleBackToWelcome} />}
-      {screen === 'themelist' && selectedCategory && <ThemeListSelection category={selectedCategory} onSelectTheme={handleSelectTheme} onBack={handleBackToCategories} />}
-      {screen === 'reading' && selectedTheme && <ReadingScreen theme={selectedTheme} onBack={handleBackFromReading} />}
+      {screen === 'categories' && (
+        <CategorySelection 
+            onSelectCategory={handleSelectCategory} 
+            onSelectTheme={handleSelectTheme} 
+            onBack={handleBackToWelcome}
+            bookmarkedCount={bookmarks.length}
+            onOpenBookmarks={handleOpenBookmarks}
+        />
+      )}
+      {screen === 'themelist' && selectedCategory && (
+        <ThemeListSelection 
+            category={selectedCategory} 
+            onSelectTheme={handleSelectTheme} 
+            onBack={handleBackToCategories} 
+        />
+      )}
+      {screen === 'reading' && selectedTheme && (
+        <ReadingScreen 
+            theme={selectedTheme} 
+            onBack={handleBackFromReading} 
+            isBookmarked={bookmarks.includes(selectedTheme.id)}
+            toggleBookmark={() => toggleBookmark(selectedTheme.id)}
+        />
+      )}
     </div>
   );
 };

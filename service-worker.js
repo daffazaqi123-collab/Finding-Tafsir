@@ -1,4 +1,4 @@
-const CACHE_NAME = 'finding-tafsir-v3';
+const CACHE_NAME = 'finding-tafsir-v4';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -18,13 +18,22 @@ self.addEventListener('install', (event) => {
 
 // Activate: Clean up old caches if any
 self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
+  );
 });
 
 // Fetch: Strategy for "Offline Total"
 self.addEventListener('fetch', (event) => {
   // 1. Navigation Requests (HTML): Try Network, Fallback to Cache, Fallback to /index.html
-  // This ensures if you open the app offline, it loads the main page instead of 404.
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request)
@@ -32,7 +41,6 @@ self.addEventListener('fetch', (event) => {
           return caches.match(event.request)
             .then((cachedResponse) => {
               if (cachedResponse) return cachedResponse;
-              // CRITICAL FIX: If navigation fails, return the main index.html
               return caches.match('/index.html');
             });
         })
@@ -47,8 +55,7 @@ self.addEventListener('fetch', (event) => {
         return cachedResponse;
       }
       return fetch(event.request).then((networkResponse) => {
-        // Cache valid responses for next time (e.g., React from esm.sh)
-        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic' || networkResponse.type === 'cors') {
+        if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
            const responseToCache = networkResponse.clone();
            caches.open(CACHE_NAME).then((cache) => {
              cache.put(event.request, responseToCache);
